@@ -1,0 +1,104 @@
+# 🎟️ Ticket Booking System (Node.js + Express)
+
+A simple ticket booking system built with **Node.js** and **Express.js**, simulating seat booking for events or movie theaters.
+It supports **viewing available seats, locking seats temporarily, and confirming bookings** with automatic lock expiry.
+
+---
+
+## 🚀 Features
+
+* View available, locked, and booked seats
+* Lock a seat (temporary hold for 1 minute)
+* Confirm a booking if locked by the same user
+* Auto-expiry of locked seats after 1 minute
+* In-memory storage for simplicity
+* Error handling for invalid actions (e.g., locking already booked seats)
+
+---
+
+## 📂 Project Structure
+
+```
+MY-PROJECT/
+├── src/
+│   ├── routes/
+│   │   └── bookingRoutes.js   # Booking routes logic
+│   ├── app.js                 # Main Express app
+│   └── index.html             # Simple homepage
+├── package.json
+└── README.md
+```
+
+---
+
+## ⚡ Installation
+
+1. Clone the repo:
+
+   ```bash
+   git clone https://github.com/your-username/ticket-booking-system.git
+   cd ticket-booking-system
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the server:
+
+   ```bash
+   npm run dev
+   ```
+
+   Server will run at **[http://localhost:3000](http://localhost:3000)**
+
+---
+
+## 📡 API Endpoints
+
+### 1. View all seats
+
+```
+GET /booking/seats
+```
+
+Response:
+
+```json
+{
+  "1": { "status": "available" },
+  "2": { "status": "locked", "lockedBy": "userA" },
+  "3": { "status": "booked", "bookedBy": "userB" }
+}
+```
+
+### 2. Lock a seat
+
+```
+POST /booking/lock/:id
+Body: { "userId": "userA" }
+```
+
+3. Confirm a booking
+
+```
+POST /booking/confirm/:id
+Body: { "userId": "userA" }
+```
+
+## 🧪 Testing
+
+* Try locking the same seat with **two users** → only one succeeds.
+* If a seat is not confirmed in 1 minute, it becomes **available again**.
+* Confirming without a lock → returns an **error**.
+
+---
+
+## 👨‍💻 Author
+
+**Ayush Rana**
+🎓 CSE Student | 🚀 Aspiring Embedded Engineer | 💻 Full-stack Explorer
+
+---
